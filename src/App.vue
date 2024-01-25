@@ -20,6 +20,11 @@ const addTodo = () => {
   input_category.value = null
   //console.log(todos)
 }
+
+const removeToDo = (todo) => {
+  todos.value = todos.value.filter(t => t !== todo)
+}
+
 </script>
 
 <template>
@@ -58,6 +63,7 @@ const addTodo = () => {
     <input type="submit" value="Add Todo" />
   </form>
  </section>
+
  <section class="todo-list">
   <div class="list">
     <div v-for="todo in todos" :class="`todo-item ${todo.done ? 'done' : 'not-done'}`" :key="todo">
@@ -67,6 +73,9 @@ const addTodo = () => {
     </label>
     <div class="todo-content">
       <input type="text" v-model="todo.content" />
+    </div>
+    <div class="actions">
+      <button class="delete" @click="removeToDo(todo)">Delete</button>
     </div>
     </div>
   </div>
